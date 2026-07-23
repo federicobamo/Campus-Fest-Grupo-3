@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFest 2026 — Gestión de actividades</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+ 
+  <div class="proto-banner">
+    Prototipo de alta fidelidad &mdash; <strong>RF-ACT-01/03: Gestión de actividades (CRUD)</strong> &mdash; Proyecto CampusFest (CENFOTEC)
+  </div>
+ 
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <span class="logo-mark">CF</span>
+        CampusFest <span style="font-size: 13px; font-weight: 400; opacity: 0.7;">/ Admin</span>
+      </a>
+      <div class="navbar-actions">
+        <a href="index.html" class="btn btn-secondary btn-sm">Ver sitio público</a>
+        <a href="admin-login.html" class="btn btn-secondary btn-sm">Cerrar sesión</a>
+      </div>
+    </div>
+  </header>
+ 
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-user">
+        <div class="admin-avatar">AD</div>
+        <div>
+          <strong>Admin CampusFest</strong>
+          <span>Administrador</span>
+        </div>
+      </div>
+ 
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html">&#128202; Dashboard</a>
+        <a href="admin-actividades.html" class="active">&#127881; Actividades</a>
+        <a href="admin-inscripciones.html">&#128221; Inscripciones</a>
+        <a href="admin-stands.html">&#127902; Stands</a>
+        <a href="admin-login.html">&#128274; Cerrar sesión</a>
+      </nav>
+    </aside>
+ 
+    <!-- MAIN -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <div>
+          <h1>Gestión de actividades</h1>
+          <p>Registra, edita o cancela las actividades del festival (RF-ACT-01, RF-ACT-03).</p>
+        </div>
+        <button class="btn btn-primary" onclick="openModal('modalNuevaActividad')">+ Nueva actividad</button>
+      </div>
+ 
+      <div class="filter-bar">
+        <select aria-label="Filtrar por categoría">
+          <option value="">Todas las categorías</option>
+          <option>Cultural</option>
+          <option>Deportiva</option>
+          <option>Tecnológica</option>
+          <option>Artística</option>
+          <option>Gastronómica</option>
+          <option>Recreativa</option>
+        </select>
+        <select aria-label="Filtrar por estado">
+          <option value="">Todos los estados</option>
+          <option>Disponible</option>
+          <option>Lleno</option>
+          <option>Cancelado</option>
+        </select>
+      </div>
+ 
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Actividad</th>
+              <th>Categoría</th>
+              <th>Fecha y hora</th>
+              <th>Lugar / enlace</th>
+              <th>Cupo</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Las filas se generan dinámicamente desde actividades-admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+ 
+  <!-- MODAL: NUEVA ACTIVIDAD -->
+  <div class="modal-overlay" id="modalNuevaActividad">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 18px;">Registrar nueva actividad</h3>
+        <button class="modal-close" onclick="closeModal('modalNuevaActividad')" aria-label="Cerrar">&times;</button>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="nombreAct">Nombre de la actividad <span class="required">*</span></label>
+          <input type="text" id="nombreAct" placeholder="Ej. Torneo de ajedrez">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="categoriaAct">Categoría <span class="required">*</span></label>
+            <select id="categoriaAct">
+              <option>Cultural</option>
+              <option>Deportiva</option>
+              <option>Tecnológica</option>
+              <option>Artística</option>
+              <option>Gastronómica</option>
+              <option>Recreativa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="modalidadAct">Modalidad <span class="required">*</span></label>
+            <select id="modalidadAct">
+              <option>Presencial</option>
+              <option>Virtual</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fechaAct">Fecha <span class="required">*</span></label>
+            <input type="date" id="fechaAct">
+          </div>
+          <div class="form-group">
+            <label for="horaAct">Hora <span class="required">*</span></label>
+            <input type="time" id="horaAct">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lugarAct">Lugar o enlace <span class="required">*</span></label>
+          <input type="text" id="lugarAct" placeholder="Dirección física o enlace virtual">
+        </div>
+        <div class="form-group">
+          <label for="cupoAct">Cupo máximo <span class="required">*</span></label>
+          <input type="number" id="cupoAct" placeholder="Ej. 30" min="0">
+        </div>
+        <div class="form-group">
+          <label for="requisitosAct">Requisitos de participación</label>
+          <textarea id="requisitosAct" rows="3" placeholder="Describe los requisitos para participar"></textarea>
+        </div>
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+          <input type="checkbox" id="sinInscripcionAct" style="width: auto;">
+          <label for="sinInscripcionAct" style="margin: 0;">Esta actividad no requiere inscripción previa</label>
+        </div>
+      </form>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('modalNuevaActividad')">Cancelar</button>
+        <button class="btn btn-primary">Guardar actividad</button>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- MODAL: EDITAR ACTIVIDAD -->
+  <div class="modal-overlay" id="modalEditarActividad">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 18px;">Editar actividad</h3>
+        <button class="modal-close" onclick="closeModal('modalEditarActividad')" aria-label="Cerrar">&times;</button>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="nombreEdit">Nombre de la actividad</label>
+          <input type="text" id="nombreEdit">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="categoriaEdit">Categoría</label>
+            <select id="categoriaEdit">
+              <option>Cultural</option>
+              <option>Deportiva</option>
+              <option>Tecnológica</option>
+              <option>Artística</option>
+              <option>Gastronómica</option>
+              <option>Recreativa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cupoEdit">Cupo máximo</label>
+            <input type="number" id="cupoEdit">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fechaEdit">Fecha</label>
+            <input type="date" id="fechaEdit">
+          </div>
+          <div class="form-group">
+            <label for="horaEdit">Hora</label>
+            <input type="time" id="horaEdit">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lugarEdit">Lugar o enlace</label>
+          <input type="text" id="lugarEdit">
+        </div>
+      </form>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('modalEditarActividad')">Cancelar</button>
+        <button class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- MODAL: CANCELAR ACTIVIDAD -->
+  <div class="modal-overlay" id="modalCancelarActividad">
+    <div class="modal-card" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3 style="font-size: 18px;">Cancelar actividad</h3>
+        <button class="modal-close" onclick="closeModal('modalCancelarActividad')" aria-label="Cerrar">&times;</button>
+      </div>
+      <p style="font-size: 14px; color: var(--color-texto-secundario);">
+        ¿Estás seguro de que deseas cancelar esta actividad? Su estado cambiará a
+        <strong>cancelado</strong> y se reflejará en el catálogo público y en la agenda.
+        Esta acción no elimina los datos de inscripción ya registrados.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('modalCancelarActividad')">Volver</button>
+        <button class="btn btn-primary" style="background: var(--color-escuela-soft);">Sí, cancelar actividad</button>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">&#10003;</span>
+    <div>
+      <strong>Acción completada</strong>
+      <p>Los cambios se guardaron correctamente.</p>
+    </div>
+  </div>
+ 
+  <script src="js/main.js"></script>
+  <script src="js/actividades-admin.js"></script>
+</body>
+</html>
