@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CampusFest 2026 — Gestión de actividades</title>
+  <title>CampusFest 2026 — Gestión de stands</title>
+  <script src="js/proteger-ruta.js"></script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
- 
+
   <div class="proto-banner">
-    Prototipo de alta fidelidad &mdash; <strong>RF-ACT-01/03: Gestión de actividades (CRUD)</strong> &mdash; Proyecto CampusFest (CENFOTEC)
+    Prototipo de alta fidelidad &mdash; <strong>RF-STA-01/03: Gestión de stands</strong> &mdash; Proyecto CampusFest (CENFOTEC)
   </div>
- 
+
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container">
@@ -21,11 +22,11 @@
       </a>
       <div class="navbar-actions">
         <a href="index.html" class="btn btn-secondary btn-sm">Ver sitio público</a>
-        <a href="admin-login.html" class="btn btn-secondary btn-sm">Cerrar sesión</a>
+        <a href="#" class="btn btn-secondary btn-sm" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">Cerrar sesión</a>
       </div>
     </div>
   </header>
- 
+
   <div class="admin-layout">
     <!-- SIDEBAR -->
     <aside class="admin-sidebar">
@@ -36,201 +37,176 @@
           <span>Administrador</span>
         </div>
       </div>
- 
+
       <nav class="admin-nav">
         <a href="admin-dashboard.html">&#128202; Dashboard</a>
-        <a href="admin-actividades.html" class="active">&#127881; Actividades</a>
+        <a href="admin-actividades.html">&#127881; Actividades</a>
         <a href="admin-inscripciones.html">&#128221; Inscripciones</a>
-        <a href="admin-stands.html">&#127902; Stands</a>
-        <a href="admin-login.html">&#128274; Cerrar sesión</a>
+        <a href="admin-stands.html" class="active">&#127902; Stands</a>
+        <a href="#" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">&#128274; Cerrar sesión</a>
       </nav>
     </aside>
- 
+
     <!-- MAIN -->
     <main class="admin-main">
       <div class="admin-header">
         <div>
-          <h1>Gestión de actividades</h1>
-          <p>Registra, edita o cancela las actividades del festival (RF-ACT-01, RF-ACT-03).</p>
+          <h1>Gestión de stands</h1>
+          <p>Registra, edita o elimina los stands y grupos participantes (RF-STA-01, RF-STA-03).</p>
         </div>
-        <button class="btn btn-primary" onclick="openModal('modalNuevaActividad')">+ Nueva actividad</button>
+        <button class="btn btn-primary" onclick="openModal('modalNuevoStand')">+ Nuevo stand</button>
       </div>
- 
+
       <div class="filter-bar">
         <select aria-label="Filtrar por categoría">
           <option value="">Todas las categorías</option>
+          <option>Académico</option>
+          <option>Deportivo</option>
           <option>Cultural</option>
-          <option>Deportiva</option>
-          <option>Tecnológica</option>
-          <option>Artística</option>
-          <option>Gastronómica</option>
-          <option>Recreativa</option>
-        </select>
-        <select aria-label="Filtrar por estado">
-          <option value="">Todos los estados</option>
-          <option>Disponible</option>
-          <option>Lleno</option>
-          <option>Cancelado</option>
+          <option>Tecnológico</option>
+          <option>Emprendimiento</option>
         </select>
       </div>
- 
+
       <div class="table-wrapper">
         <table>
           <thead>
             <tr>
-              <th>Actividad</th>
+              <th>Nombre</th>
               <th>Categoría</th>
-              <th>Fecha y hora</th>
-              <th>Lugar / enlace</th>
-              <th>Cupo</th>
-              <th>Estado</th>
+              <th>Responsable</th>
+              <th>Ubicación</th>
+              <th>Actividades vinculadas</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <!-- Las filas se generan dinámicamente desde actividades-admin.js -->
-          </tbody>
+            </tbody>
         </table>
       </div>
     </main>
   </div>
- 
-  <!-- MODAL: NUEVA ACTIVIDAD -->
-  <div class="modal-overlay" id="modalNuevaActividad">
+
+  <!-- MODAL: NUEVO STAND -->
+  <div class="modal-overlay" id="modalNuevoStand">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 style="font-size: 18px;">Registrar nueva actividad</h3>
-        <button class="modal-close" onclick="closeModal('modalNuevaActividad')" aria-label="Cerrar">&times;</button>
+        <h3 style="font-size: 18px;">Registrar nuevo stand</h3>
+        <button class="modal-close" onclick="closeModal('modalNuevoStand')" aria-label="Cerrar">&times;</button>
       </div>
       <form>
         <div class="form-group">
-          <label for="nombreAct">Nombre de la actividad <span class="required">*</span></label>
-          <input type="text" id="nombreAct" placeholder="Ej. Torneo de ajedrez">
+          <label for="nombreStand">Nombre <span class="required">*</span></label>
+          <input type="text" id="nombreStand" placeholder="Ej. Club de Ajedrez">
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="categoriaAct">Categoría <span class="required">*</span></label>
-            <select id="categoriaAct">
+            <label for="categoriaStand">Categoría <span class="required">*</span></label>
+            <select id="categoriaStand">
+              <option>Académico</option>
+              <option>Deportivo</option>
               <option>Cultural</option>
-              <option>Deportiva</option>
-              <option>Tecnológica</option>
-              <option>Artística</option>
-              <option>Gastronómica</option>
-              <option>Recreativa</option>
+              <option>Tecnológico</option>
+              <option>Emprendimiento</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="modalidadAct">Modalidad <span class="required">*</span></label>
-            <select id="modalidadAct">
-              <option>Presencial</option>
-              <option>Virtual</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fechaAct">Fecha <span class="required">*</span></label>
-            <input type="date" id="fechaAct">
-          </div>
-          <div class="form-group">
-            <label for="horaAct">Hora <span class="required">*</span></label>
-            <input type="time" id="horaAct">
+            <label for="responsableStand">Responsable <span class="required">*</span></label>
+            <input type="text" id="responsableStand" placeholder="Nombre del responsable">
           </div>
         </div>
         <div class="form-group">
-          <label for="lugarAct">Lugar o enlace <span class="required">*</span></label>
-          <input type="text" id="lugarAct" placeholder="Dirección física o enlace virtual">
+          <label for="ubicacionStand">Ubicación <span class="required">*</span></label>
+          <input type="text" id="ubicacionStand" placeholder="Ej. Plaza central, stand 8">
         </div>
         <div class="form-group">
-          <label for="cupoAct">Cupo máximo <span class="required">*</span></label>
-          <input type="number" id="cupoAct" placeholder="Ej. 30" min="0">
+          <label for="descripcionStand">Descripción breve</label>
+          <textarea id="descripcionStand" rows="3" placeholder="Describe brevemente este stand o grupo"></textarea>
         </div>
         <div class="form-group">
-          <label for="requisitosAct">Requisitos de participación</label>
-          <textarea id="requisitosAct" rows="3" placeholder="Describe los requisitos para participar"></textarea>
-        </div>
-        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
-          <input type="checkbox" id="sinInscripcionAct" style="width: auto;">
-          <label for="sinInscripcionAct" style="margin: 0;">Esta actividad no requiere inscripción previa</label>
+          <label for="actividadesStand">Actividades relacionadas (opcional)</label>
+          <select id="actividadesStand" multiple size="4">
+            <option value="">Ninguna</option>
+          </select>
+          <p style="font-size: 12px; color: var(--color-texto-secundario); margin-top: 4px;">Mantené Ctrl (o Cmd en Mac) para elegir varias.</p>
         </div>
       </form>
       <div class="modal-actions">
-        <button class="btn btn-outline" onclick="closeModal('modalNuevaActividad')">Cancelar</button>
-        <button class="btn btn-primary">Guardar actividad</button>
+        <button class="btn btn-outline" onclick="closeModal('modalNuevoStand')">Cancelar</button>
+        <button class="btn btn-primary">Guardar stand</button>
       </div>
     </div>
   </div>
- 
-  <!-- MODAL: EDITAR ACTIVIDAD -->
-  <div class="modal-overlay" id="modalEditarActividad">
+
+  <!-- MODAL: EDITAR STAND -->
+  <div class="modal-overlay" id="modalEditarStand">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 style="font-size: 18px;">Editar actividad</h3>
-        <button class="modal-close" onclick="closeModal('modalEditarActividad')" aria-label="Cerrar">&times;</button>
+        <h3 style="font-size: 18px;">Editar stand</h3>
+        <button class="modal-close" onclick="closeModal('modalEditarStand')" aria-label="Cerrar">&times;</button>
       </div>
       <form>
         <div class="form-group">
-          <label for="nombreEdit">Nombre de la actividad</label>
-          <input type="text" id="nombreEdit">
+          <label for="nombreStandEdit">Nombre</label>
+          <input type="text" id="nombreStandEdit" value="Club de Robótica">
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="categoriaEdit">Categoría</label>
-            <select id="categoriaEdit">
+            <label for="categoriaStandEdit">Categoría</label>
+            <select id="categoriaStandEdit">
+              <option selected>Tecnológico</option>
+              <option>Académico</option>
+              <option>Deportivo</option>
               <option>Cultural</option>
-              <option>Deportiva</option>
-              <option>Tecnológica</option>
-              <option>Artística</option>
-              <option>Gastronómica</option>
-              <option>Recreativa</option>
+              <option>Emprendimiento</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="cupoEdit">Cupo máximo</label>
-            <input type="number" id="cupoEdit">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fechaEdit">Fecha</label>
-            <input type="date" id="fechaEdit">
-          </div>
-          <div class="form-group">
-            <label for="horaEdit">Hora</label>
-            <input type="time" id="horaEdit">
+            <label for="responsableStandEdit">Responsable</label>
+            <input type="text" id="responsableStandEdit" value="Luis Vargas Quirós">
           </div>
         </div>
         <div class="form-group">
-          <label for="lugarEdit">Lugar o enlace</label>
-          <input type="text" id="lugarEdit">
+          <label for="ubicacionStandEdit">Ubicación</label>
+          <input type="text" id="ubicacionStandEdit" value="Plaza central, stand 4">
+        </div>
+        <div class="form-group">
+          <label for="descripcionStandEdit">Descripción breve</label>
+          <textarea id="descripcionStandEdit" rows="3">Demostraciones de robots autónomos y talleres de programación para principiantes.</textarea>
+        </div>
+              <div class="form-group">
+          <label for="actividadesStandEdit">Actividades relacionadas</label>
+          <select id="actividadesStandEdit" multiple size="4">
+            <option value="">Ninguna</option>
+          </select>
+          <p style="font-size: 12px; color: var(--color-texto-secundario); margin-top: 4px;">Mantené Ctrl (o Cmd en Mac) para elegir varias.</p>
         </div>
       </form>
       <div class="modal-actions">
-        <button class="btn btn-outline" onclick="closeModal('modalEditarActividad')">Cancelar</button>
+        <button class="btn btn-outline" onclick="closeModal('modalEditarStand')">Cancelar</button>
         <button class="btn btn-primary">Guardar cambios</button>
       </div>
     </div>
   </div>
- 
-  <!-- MODAL: CANCELAR ACTIVIDAD -->
-  <div class="modal-overlay" id="modalCancelarActividad">
+
+  <!-- MODAL: ELIMINAR STAND -->
+  <div class="modal-overlay" id="modalEliminarStand">
     <div class="modal-card" style="max-width: 420px;">
       <div class="modal-header">
-        <h3 style="font-size: 18px;">Cancelar actividad</h3>
-        <button class="modal-close" onclick="closeModal('modalCancelarActividad')" aria-label="Cerrar">&times;</button>
+        <h3 style="font-size: 18px;">Eliminar stand</h3>
+        <button class="modal-close" onclick="closeModal('modalEliminarStand')" aria-label="Cerrar">&times;</button>
       </div>
       <p style="font-size: 14px; color: var(--color-texto-secundario);">
-        ¿Estás seguro de que deseas cancelar esta actividad? Su estado cambiará a
-        <strong>cancelado</strong> y se reflejará en el catálogo público y en la agenda.
-        Esta acción no elimina los datos de inscripción ya registrados.
+        ¿Estás seguro de que deseas eliminar este stand? Esta acción lo quitará de la
+        página pública de stands y grupos.
       </p>
       <div class="modal-actions">
-        <button class="btn btn-outline" onclick="closeModal('modalCancelarActividad')">Volver</button>
-        <button class="btn btn-primary" style="background: var(--color-escuela-soft);">Sí, cancelar actividad</button>
+        <button class="btn btn-outline" onclick="closeModal('modalEliminarStand')">Volver</button>
+        <button class="btn btn-primary" style="background: var(--color-escuela-soft);">Sí, eliminar stand</button>
       </div>
     </div>
   </div>
- 
+
   <!-- TOAST -->
   <div class="toast" id="toast">
     <span class="toast-icon">&#10003;</span>
@@ -239,8 +215,8 @@
       <p>Los cambios se guardaron correctamente.</p>
     </div>
   </div>
- 
+
   <script src="js/main.js"></script>
-  <script src="js/actividades-admin.js"></script>
+  <script src="js/stands-admin.js"></script>
 </body>
 </html>

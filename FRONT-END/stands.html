@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFest 2026 — Stands y grupos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="proto-banner">
+    Prototipo de alta fidelidad &mdash; <strong>RF-FE-06: Página de stands o grupos</strong> &mdash; Proyecto CampusFest (CENFOTEC)
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <span class="logo-mark">CF</span>
+        CampusFest
+      </a>
+      <nav class="navbar-links" id="navbarLinks">
+        <a href="index.html">Inicio</a>
+        <a href="actividades.html">Actividades</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="stands.html" class="active">Stands</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+      <div class="navbar-actions">
+        <a href="inscripcion.html" class="btn btn-acento btn-sm">Inscribirme</a>
+        <a href="admin-login.html" class="btn btn-secondary btn-sm">Administrador</a>
+        <button class="navbar-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Inicio</a> / Stands y grupos
+      </div>
+
+      <div class="section-header-row">
+        <div>
+          <h2>Stands y grupos participantes</h2>
+          <p>Conoce los stands, clubes y grupos estudiantiles que estarán presentes en el festival.</p>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <select aria-label="Filtrar por categoría">
+          <option value="">Todas las categorías</option>
+          <option>Académico</option>
+          <option>Deportivo</option>
+          <option>Cultural</option>
+          <option>Tecnológico</option>
+          <option>Emprendimiento</option>
+        </select>
+      </div>
+
+      <div class="cards-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <p class="desc">Cargando stands...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="logo-mark">CF</span>
+            CampusFest
+          </div>
+          <p style="font-size: 14px; max-width: 280px;">
+            Festival estudiantil anual de Universidad CENFOTEC.
+          </p>
+        </div>
+        <div>
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="actividades.html">Actividades</a></li>
+            <li><a href="agenda.html">Agenda</a></li>
+            <li><a href="stands.html">Stands</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Participantes</h4>
+          <ul>
+            <li><a href="inscripcion.html">Inscripción</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Administración</h4>
+          <ul>
+            <li><a href="admin-login.html">Iniciar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Universidad CENFOTEC &mdash; Prototipo CampusFest, Proyecto Integrador 1 (SOFT-11)
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/stands.js"></script>
+</body>
+</html>
