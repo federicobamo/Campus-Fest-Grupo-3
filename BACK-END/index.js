@@ -12,6 +12,9 @@ const PORT = process.env.PORT || 3000; //Usar el puerto indicado en .env o si no
 
 const  administradorRoute = require("./routes/administrador.route");
 const actividadRoute = require ("./routes/actividad.route");
+const standRoute = require("./routes/stand.route");
+const agendaRoute = require("./routes/agenda.route");
+const inscripcionRoute = require("./routes/inscripcion.route");
 
 //--------------------------------------------------------------------
 
@@ -29,6 +32,9 @@ mongoose.connect(process.env.MONGODB_URI)
 
 app.use("/administrador", administradorRoute);
 app.use("/actividad", actividadRoute);
+app.use("/stand", standRoute);
+app.use("/agenda", agendaRoute);
+app.use("/inscripcion", inscripcionRoute);
 
 
 //-------------------------------------------------

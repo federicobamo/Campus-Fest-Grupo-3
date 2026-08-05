@@ -1,0 +1,12 @@
+
+
+
+2) Levantar el backend:
+   cd ~/Downloads/CAMPUSFEST-v2/BACK-END
+   npm install
+   node index.js
+
+3) Abrir el sitio 
+   open ~/Downloads/CAMPUSFEST-v2/FRONT-END/index.html
+  
+

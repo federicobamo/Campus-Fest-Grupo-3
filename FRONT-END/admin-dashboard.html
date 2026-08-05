@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFest 2026 — Panel de administración</title>
+  <script src="js/proteger-ruta.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+ 
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <span class="logo-mark">CF</span>
+        CampusFest <span style="font-size: 13px; font-weight: 400; opacity: 0.7;">/ Admin</span>
+      </a>
+      <div class="navbar-actions">
+        <a href="index.html" class="btn btn-secondary btn-sm">Ver sitio público</a>
+        <a href="#" class="btn btn-secondary btn-sm" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">Cerrar sesión</a>
+      </div>
+    </div>
+  </header>
+ 
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-user">
+        <div class="admin-avatar">AD</div>
+        <div>
+          <strong id="correoAdminTexto">Admin CampusFest</strong>
+          <span>Administrador</span>
+        </div>
+      </div>
+ 
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html" class="active">&#128202; Dashboard</a>
+        <a href="admin-actividades.html">&#127881; Actividades</a>
+        <a href="admin-inscripciones.html">&#128221; Inscripciones</a>
+        <a href="admin-stands.html">&#127902; Stands</a>
+        <a href="admin-resultados.html">&#127942; Resultados</a>
+        <a href="#" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">&#128274; Cerrar sesión</a>
+      </nav>
+    </aside>
+ 
+    <!-- MAIN -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <div>
+          <h1>Panel de administración</h1>
+          <p>Resumen general de CampusFest 2026</p>
+        </div>
+      </div>
+ 
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Actividades publicadas</div>
+          <div class="stat-value" id="statActividadesValor">—</div>
+          <div class="stat-trend" id="statActividadesTrend">Cargando...</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Inscripciones totales</div>
+          <div class="stat-value">—</div>
+          <div class="stat-trend">Pendiente (módulo Inscripciones)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Stands registrados</div>
+          <div class="stat-value">—</div>
+          <div class="stat-trend">Pendiente (módulo Stands)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Cupos disponibles</div>
+          <div class="stat-value" id="statCupoValor">—</div>
+          <div class="stat-trend" id="statCupoTrend">Cargando...</div>
+        </div>
+      </div>
+ 
+      <div class="section-header-row">
+        <div>
+          <h2 style="font-size: 20px;">Actividades con mayor demanda</h2>
+          <p style="font-size: 14px;">Actividades próximas a llenar su cupo.</p>
+        </div>
+        <a href="admin-actividades.html" class="btn btn-outline btn-sm">Ver todas las actividades</a>
+      </div>
+ 
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Actividad</th>
+              <th>Categoría</th>
+              <th>Fecha</th>
+              <th>Inscritos / cupo</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tablaDemandaBody">
+            <!-- Filas generadas dinámicamente desde dashboard-admin.js -->
+          </tbody>
+        </table>
+      </div>
+ 
+    </main>
+  </div>
+ 
+  <script src="js/main.js"></script>
+  <script src="js/dashboard-admin.js"></script>
+</body>
+</html>

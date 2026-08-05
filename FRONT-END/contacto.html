@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFest 2026 — Contacto</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <span class="logo-mark">CF</span>
+        CampusFest
+      </a>
+      <nav class="navbar-links" id="navbarLinks">
+        <a href="index.html">Inicio</a>
+        <a href="actividades.html">Actividades</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="stands.html">Stands</a>
+        <a href="contacto.html" class="active">Contacto</a>
+      </nav>
+      <div class="navbar-actions">
+        <a href="inscripcion.html" class="btn btn-acento btn-sm">Inscribirme</a>
+        <a href="admin-login.html" class="btn btn-secondary btn-sm">Administrador</a>
+        <button class="navbar-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Inicio</a> / Contacto
+      </div>
+
+      <div class="section-header-row">
+        <div>
+          <h2>Contacto</h2>
+          <p>Comunícate con el comité organizador del festival o consulta las preguntas frecuentes.</p>
+        </div>
+      </div>
+
+      <!-- COMITÉ ORGANIZADOR: información, correo y teléfono -->
+      <div class="cards-grid" style="margin-bottom: 48px;">
+        <article class="activity-card">
+          <div class="activity-card-body">
+            <span class="activity-card-category">Comité</span>
+            <h3>Comité organizador</h3>
+            <div class="activity-card-meta">
+              <div class="activity-card-meta-item">👥 Vida Estudiantil · Universidad CENFOTEC</div>
+              <div class="activity-card-meta-item">🕘 Lunes a viernes, 8:00 a.m. – 5:00 p.m.</div>
+            </div>
+          </div>
+        </article>
+        <article class="activity-card">
+          <div class="activity-card-body">
+            <span class="activity-card-category">Correo</span>
+            <h3>Correo de contacto</h3>
+            <div class="activity-card-meta">
+              <div class="activity-card-meta-item">✉️ campusfest@ucenfotec.ac.cr</div>
+              <div class="activity-card-meta-item">Respuesta en un máximo de 48 horas hábiles.</div>
+            </div>
+          </div>
+        </article>
+        <article class="activity-card">
+          <div class="activity-card-body">
+            <span class="activity-card-category">Teléfono</span>
+            <h3>Línea del festival</h3>
+            <div class="activity-card-meta">
+              <div class="activity-card-meta-item">📞 +506 2281-1555 (ext. 120)</div>
+              <div class="activity-card-meta-item">Atención durante los días del evento: 7:00 a.m. – 8:00 p.m.</div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- FORMULARIO DE CONSULTA VISUAL -->
+      <div class="section-header">
+        <h2>Envíanos tu consulta</h2>
+        <p>Completa el formulario y el comité organizador te responderá por correo.</p>
+      </div>
+
+      <form class="form-card" id="formularioConsulta" style="max-width: 640px; margin: 0 auto 56px;">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombreConsulta">Nombre completo</label>
+            <input type="text" id="nombreConsulta" required placeholder="Escriba su nombre completo">
+          </div>
+          <div class="form-group">
+            <label for="correoConsulta">Correo electrónico</label>
+            <input type="email" id="correoConsulta" required placeholder="usuario@ucenfotec.ac.cr">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="asuntoConsulta">Asunto</label>
+          <select id="asuntoConsulta" aria-label="Seleccione un asunto">
+            <option value="">Seleccione un asunto</option>
+            <option>Inscripciones</option>
+            <option>Actividades</option>
+            <option>Stands</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensajeConsulta">Mensaje</label>
+          <textarea id="mensajeConsulta" rows="4" required placeholder="Escriba su consulta"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar consulta</button>
+      </form>
+
+      <!-- PREGUNTAS FRECUENTES -->
+      <div class="section-header">
+        <h2>Preguntas frecuentes</h2>
+        <p>Las dudas más comunes sobre el festival.</p>
+      </div>
+
+      <div style="max-width: 720px; margin: 0 auto;">
+        <div class="faq-item">
+          <div class="faq-question">¿Hasta cuándo puedo inscribirme a una actividad?</div>
+          <div class="faq-answer">Las inscripciones cierran automáticamente 36 horas antes del inicio de cada actividad, o antes si el cupo se llena.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Qué correo debo usar para inscribirme?</div>
+          <div class="faq-answer">Debes usar tu correo institucional (@ucenfotec.ac.cr). El sistema no acepta correos personales.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Puedo inscribirme en varias actividades?</div>
+          <div class="faq-answer">Sí, puedes inscribirte en todas las actividades que quieras, siempre que tengan cupo disponible. Lo que no se permite es inscribirte dos veces en la misma actividad.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Puedo cancelar mi inscripción?</div>
+          <div class="faq-answer">La cancelación no se realiza desde el sitio. Si necesitas cancelar, escribe al comité organizador (campusfest@ucenfotec.ac.cr) y un administrador procesará la solicitud.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿La confirmación de inscripción llega por correo?</div>
+          <div class="faq-answer">No. La confirmación se muestra únicamente en pantalla al completar el formulario de inscripción.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="logo-mark">CF</span>
+            CampusFest
+          </div>
+          <p style="font-size: 14px; max-width: 280px;">
+            Festival estudiantil anual de Universidad CENFOTEC.
+          </p>
+        </div>
+        <div>
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="actividades.html">Actividades</a></li>
+            <li><a href="agenda.html">Agenda</a></li>
+            <li><a href="stands.html">Stands</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Participantes</h4>
+          <ul>
+            <li><a href="inscripcion.html">Inscripción</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Administración</h4>
+          <ul>
+            <li><a href="admin-login.html">Iniciar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Universidad CENFOTEC &mdash; Prototipo CampusFest, Proyecto Integrador 1 (SOFT-11)
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">
+    <span class="toast-icon">&#10003;</span>
+    <div>
+      <strong>Acción completada</strong>
+      <p>Los cambios se guardaron correctamente.</p>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/contacto.js"></script>
+</body>
+</html>

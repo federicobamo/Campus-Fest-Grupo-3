@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFest 2026 — Gestión de stands</title>
+  <script src="js/proteger-ruta.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <span class="logo-mark">CF</span>
+        CampusFest <span style="font-size: 13px; font-weight: 400; opacity: 0.7;">/ Admin</span>
+      </a>
+      <div class="navbar-actions">
+        <a href="index.html" class="btn btn-secondary btn-sm">Ver sitio público</a>
+        <a href="#" class="btn btn-secondary btn-sm" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">Cerrar sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-user">
+        <div class="admin-avatar">AD</div>
+        <div>
+          <strong>Admin CampusFest</strong>
+          <span>Administrador</span>
+        </div>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html">&#128202; Dashboard</a>
+        <a href="admin-actividades.html">&#127881; Actividades</a>
+        <a href="admin-inscripciones.html">&#128221; Inscripciones</a>
+        <a href="admin-stands.html" class="active">&#127902; Stands</a>
+        <a href="admin-resultados.html">&#127942; Resultados</a>
+        <a href="#" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">&#128274; Cerrar sesión</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <div>
+          <h1>Gestión de stands</h1>
+          <p>Registra, edita o elimina los stands y grupos participantes (RF-STA-01, RF-STA-03).</p>
+        </div>
+        <button class="btn btn-primary" onclick="openModal('modalNuevoStand')">+ Nuevo stand</button>
+      </div>
+
+      <div class="filter-bar">
+        <select aria-label="Filtrar por categoría">
+          <option value="">Todas las categorías</option>
+          <option>Académico</option>
+          <option>Deportivo</option>
+          <option>Cultural</option>
+          <option>Tecnológico</option>
+          <option>Emprendimiento</option>
+        </select>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Responsable</th>
+              <th>Ubicación</th>
+              <th>Actividades vinculadas</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: NUEVO STAND -->
+  <div class="modal-overlay" id="modalNuevoStand">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 18px;">Registrar nuevo stand</h3>
+        <button class="modal-close" onclick="closeModal('modalNuevoStand')" aria-label="Cerrar">&times;</button>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="nombreStand">Nombre <span class="required">*</span></label>
+          <input type="text" id="nombreStand" placeholder="Ej. Club de Ajedrez">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="categoriaStand">Categoría <span class="required">*</span></label>
+            <select id="categoriaStand">
+              <option>Académico</option>
+              <option>Deportivo</option>
+              <option>Cultural</option>
+              <option>Tecnológico</option>
+              <option>Emprendimiento</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="responsableStand">Responsable <span class="required">*</span></label>
+            <input type="text" id="responsableStand" placeholder="Nombre del responsable">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ubicacionStand">Ubicación <span class="required">*</span></label>
+          <input type="text" id="ubicacionStand" placeholder="Ej. Plaza central, stand 8">
+        </div>
+        <div class="form-group">
+          <label for="descripcionStand">Descripción breve</label>
+          <textarea id="descripcionStand" rows="3" placeholder="Describe brevemente este stand o grupo"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="actividadesStand">Actividades relacionadas (opcional)</label>
+          <select id="actividadesStand" multiple size="4">
+            <option value="">Ninguna</option>
+          </select>
+          <p style="font-size: 12px; color: var(--color-texto-secundario); margin-top: 4px;">Mantené Ctrl (o Cmd en Mac) para elegir varias.</p>
+        </div>
+      </form>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('modalNuevoStand')">Cancelar</button>
+        <button class="btn btn-primary">Guardar stand</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EDITAR STAND -->
+  <div class="modal-overlay" id="modalEditarStand">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 18px;">Editar stand</h3>
+        <button class="modal-close" onclick="closeModal('modalEditarStand')" aria-label="Cerrar">&times;</button>
+      </div>
+      c
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('modalEditarStand')">Cancelar</button>
+        <button class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ELIMINAR STAND -->
+  <div class="modal-overlay" id="modalEliminarStand">
+    <div class="modal-card" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3 style="font-size: 18px;">Eliminar stand</h3>
+        <button class="modal-close" onclick="closeModal('modalEliminarStand')" aria-label="Cerrar">&times;</button>
+      </div>
+      <p style="font-size: 14px; color: var(--color-texto-secundario);">
+        ¿Estás seguro de que deseas eliminar este stand? Esta acción lo quitará de la
+        página pública de stands y grupos.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('modalEliminarStand')">Volver</button>
+        <button class="btn btn-primary" style="background: var(--color-escuela-soft);">Sí, eliminar stand</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">&#10003;</span>
+    <div>
+      <strong>Acción completada</strong>
+      <p>Los cambios se guardaron correctamente.</p>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/stands-admin.js"></script>
+</body>
+</html>

@@ -9,6 +9,26 @@ const schemaActividad = new mongoose.Schema({
         required: true // CAMPO OBLIGATORIO
     }, 
 
+    categoriaActividad: {
+
+        type:String,
+        required: true // CAMPO OBLOGATORIO
+
+    },
+
+    descripcionActividad: {
+        type:String,
+        required: true // CAMPO OBLOGATORIO
+    
+    },
+
+    requisitosActividad: {
+
+        type:String,
+        required: false // CAMPO NO OBLOGATORIO
+
+    },
+
     fechaActividad: { 
 
         type:Date,
@@ -26,6 +46,18 @@ const schemaActividad = new mongoose.Schema({
         required: true // CAMPO OBLIGATORIO 
     }, 
 
+    esVirtual: {
+        type:Boolean,
+        required: true
+    },
+
+    enlaceActividad: {
+    type: String,
+    required: function() {
+        return this.esVirtual === true;
+        }
+    },
+
     cupoMaximoActividad: { 
         type:Number, 
         required: true // CAMPO OBLIGATORIO
@@ -33,16 +65,17 @@ const schemaActividad = new mongoose.Schema({
         
     estadoActividad: {
         type: String,
-        enum: ["Disponible", "No disponible"],
+        enum: ["Disponible", "Lleno", "Cancelado"],
         default: "Disponible",
         required: true // CAMPO OBLIGATORIO 
     },
 
-    inscripcionesCierreActividad: {
-        type: Date,
-        required: true // CAMPO OBLIGATARIO
-
+    cuposDisponiblesActividad: {
+    type: Number,
+    default: function() {
+        return this.cupoMaximoActividad;
     }
+}
 
 });
 

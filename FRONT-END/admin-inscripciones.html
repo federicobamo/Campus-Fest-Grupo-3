@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFest 2026 — Gestión de inscripciones</title>
+  <script src="js/proteger-ruta.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <span class="logo-mark">CF</span>
+        CampusFest <span style="font-size: 13px; font-weight: 400; opacity: 0.7;">/ Admin</span>
+      </a>
+      <div class="navbar-actions">
+        <a href="index.html" class="btn btn-secondary btn-sm">Ver sitio público</a>
+        <a href="#" class="btn btn-secondary btn-sm" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">Cerrar sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-user">
+        <div class="admin-avatar">AD</div>
+        <div>
+          <strong>Admin CampusFest</strong>
+          <span>Administrador</span>
+        </div>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html">&#128202; Dashboard</a>
+        <a href="admin-actividades.html">&#127881; Actividades</a>
+        <a href="admin-inscripciones.html" class="active">&#128221; Inscripciones</a>
+        <a href="admin-stands.html">&#127902; Stands</a>
+        <a href="admin-resultados.html">&#127942; Resultados</a>
+        <a href="#" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">&#128274; Cerrar sesión</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <div>
+          <h1>Gestión de inscripciones</h1>
+          <p>Consulta los estudiantes inscritos por actividad y cancela inscripciones cuando sea necesario (RF09, RF10).</p>
+        </div>
+      </div>
+
+      <div class="filter-bar">. <!-- mostrar las actividad encontradas en el JS-->
+        <select id="filtroActividad" aria-label="Filtrar por actividad">
+          <option value="">Todas las actividades</option>
+        </select>
+        <input type="search" id="filtroBusqueda" placeholder="Buscar por nombre o identificación">
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>  <!-- encabezado de la tabla-->
+              <th>Nombre completo</th>
+              <th>Identificación</th>
+              <th>Correo</th>
+              <th>Teléfono</th>
+              <th>Carrera</th>
+              <th>Actividad</th>
+              <th>Fecha de inscripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Las filas se generan dinámicamente despues de encontrarlas en el JS -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+ 
+ 
+  <!-- Modal CANCELAR INSCRIPCIÓN -->  <!-- se ejecuta despues del onclik js line 90-->
+  <div class="modal-overlay" id="modalCancelarInscripcion">
+    <div class="modal-card" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3 style="font-size: 18px;">Cancelar inscripción</h3>
+        <button class="modal-close" onclick="closeModal('modalCancelarInscripcion')" aria-label="Cerrar">&times;</button>
+      </div>
+      <p style="font-size: 14px; color: var(--color-texto-secundario);">
+        ¿Estás seguro de que deseas cancelar la inscripción de <strong id="nombreInscripcionCancelar"></strong>?
+        Esta acción libera el cupo de la actividad y no se puede deshacer.  <!-- txt confirmacion antes de cancelar -->
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('modalCancelarInscripcion')">Volver</button>
+        <button class="btn btn-primary" id="btnConfirmarCancelarInscripcion" style="background: var(--color-escuela-soft);">Sí, cancelar inscripción</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">&#10003;</span>
+    <div>
+      <strong>Acción completada</strong>
+      <p>Los cambios se guardaron correctamente.</p>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/inscripciones-admin.js"></script>
+</body>
+</html>
