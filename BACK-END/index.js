@@ -15,6 +15,7 @@ const actividadRoute = require ("./routes/actividad.route");
 const standRoute = require("./routes/stand.route");
 const agendaRoute = require("./routes/agenda.route");
 const inscripcionRoute = require("./routes/inscripcion.route");
+const contactoRoute = require("./routes/contacto.route");
 
 //--------------------------------------------------------------------
 
@@ -35,6 +36,7 @@ app.use("/actividad", actividadRoute);
 app.use("/stand", standRoute);
 app.use("/agenda", agendaRoute);
 app.use("/inscripcion", inscripcionRoute);
+app.use("/contacto", contactoRoute);
 
 
 //-------------------------------------------------

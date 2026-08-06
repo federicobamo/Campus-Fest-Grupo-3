@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusFest 2026 — Gestión de Contactos</title>
+    <script src="js/proteger-ruta.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div class="proto-banner">
+        Prototipo de alta fidelidad &mdash; <strong>RF09/RF10: Gestión de contactos - Administrador</strong> &mdash;
+        Proyecto CampusFest (CENFOTEC)
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <span class="logo-mark">CF</span>
+                CampusFest <span style="font-size: 13px; font-weight: 400; opacity: 0.7;">/ Admin</span>
+            </a>
+            <div class="navbar-actions">
+                <a href="index.html" class="btn btn-secondary btn-sm">Ver sitio público</a>
+                <a href="#" class="btn btn-secondary btn-sm"
+                    onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">Cerrar
+                    sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-layout">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+            <div class="admin-user">
+                <div class="admin-avatar">AD</div>
+                <div>
+                    <strong>Admin CampusFest</strong>
+                    <span>Administrador</span>
+                </div>
+            </div>
+
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html">&#128202; Dashboard</a>
+                <a href="admin-actividades.html">&#127881; Actividades</a>
+                <a href="admin-inscripciones.html">&#128221; Inscripciones</a>
+                <a href="admin-contacto.html" class="active">&#128231; Contactos</a>
+                <a href="admin-stands.html">&#127902; Stands</a>
+                <a href="#"
+                    onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">&#128274;
+                    Cerrar sesión</a>
+            </nav>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <div>
+                    <h1>Gestión de contactos</h1>
+                    <p>Consulta los contactos registrados y administra su información (RF09, RF10).</p>
+                </div>
+            </div>
+
+        
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr> <!-- encabezado de la tabla-->
+                            <th>Nombre completo</th>
+                            <th>Correo</th>
+                            <th>Asunto Contacto</th>
+                            <th>Mensaje</th>
+                            <th>Fecha Contacto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las filas se generan dinámicamente despues de encontrarlas en el JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+
+
+    <!-- Modal borrar el mensaje  -->
+    <div class="modal-overlay" id="modalBorrarMensaje">
+        <div class="modal-card" style="max-width: 420px;">
+            <div class="modal-header">
+                <h3 style="font-size: 18px;">Borrar mensaje</h3>
+                <button class="modal-close" onclick="closeModal('modalBorrarMensaje')"
+                    aria-label="Cerrar">&times;</button>
+            </div>
+            <p style="font-size: 14px; color: var(--color-texto-secundario);">
+                ¿Estás seguro de que deseas borrar el mensaje de <strong id="nombreContactoMensaje"></strong>?
+                Esta acción no se puede deshacer. <!-- txt confirmacion antes de cancelar el mensaje  -->
+            </p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeModal('modalBorrarMensaje')">Volver</button>
+                <button class="btn btn-primary" id="btnConfirmarBorrarMensaje"
+                    style="background: var(--color-escuela-soft);">Sí, borrar mensaje</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">&#10003;</span>
+        <div>
+            <strong>Acción completada</strong>
+            <p>Los cambios se guardaron correctamente.</p>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/contacto-admin.js"></script>
+</body>
+
+</html>

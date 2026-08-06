@@ -28,3 +28,16 @@ RF10: El administrador puede cancelar la inscripción de un estudiante de forma 
 RF11: El sistema debe registrar la fecha y hora en que se realizó cada inscripción. 
 
 
+------- 
+
+Pagina login: logo volver a pagina inicial 
+Hacer la pagina de inicio  y contacto 
+stands? 
+conectar 
+
+-----------
+PAGINA DE COMENTARIOS 
+
+formulario: nombre completo, correo, asunto tipo filter, mensaje 
+informacion de contacto 
+

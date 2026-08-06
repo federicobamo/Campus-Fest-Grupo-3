@@ -66,6 +66,7 @@ router.post("/", async (req, res) => {
                 mensajeError: "La inscripción está cerrada, faltan 36 horas o menos para la actividad"
             });
         }
+        
         //RF04: inscripciones cuando el cupo esté lleno.
         const cuposDisponibles = actividad.cuposDisponiblesActividad ?? actividad.cupoMaximoActividad; // ?? nulo 
 
@@ -98,7 +99,7 @@ router.post("/", async (req, res) => {
         await nuevaInscripcion.save(); // guardar la informacion 
 
 
-        // Se descuenta el cupo y, si se llenó, se cambia el estado de la actividad
+        // Se descuenta el cupo y, si se lleno, se cambia el estado de la actividad
         actividad.cuposDisponiblesActividad = cuposDisponibles - 1;
 
         if (actividad.cuposDisponiblesActividad === 0) { // Validacion : cupos disponibles igual a 0 (lleno)
@@ -120,7 +121,7 @@ router.post("/", async (req, res) => {
 });
 
 
-//  consultar Listar las inscripciones
+//  consultar Lista de inscripciones 
 
 router.get("/", async (req, res) => {
     try { 
@@ -167,11 +168,11 @@ router.delete("/:id", async (req, res) => {
 
 
 
-        return res.status(200).json({
+        return res.status(200).json({ // responde con exito 
             mensaje: "Inscripción eliminada correctamente"
         });
 
-    } catch (error) {
+    } catch (error) { // en caso algo falle con el try
         return res.status(500).json({
             mensajeError: "Error al eliminar la inscripción",
             error: error.message
@@ -180,4 +181,4 @@ router.delete("/:id", async (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = router; // conexion index 

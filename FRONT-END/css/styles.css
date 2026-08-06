@@ -596,7 +596,47 @@ h1, h2, h3, h4 {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
+/* =========================================================
+   Informacion Contacto
+   ========================================================= */
+.contact-info {
+  margin-top: 24px; /* separa el cuadro de contacto del botón "Enviar mensaje" de arriba */
+}
 
+.contact-info-item {   /* estilo para cada elemento de información de contacto (icono + texto) */
+  display: flex;  /* pone el icono uno del lado del otro */
+  align-items: flex-start;  /* los alinea arriba, no al centro */
+  gap: 16px; /*  espacio entre el ícono y el texto */
+  padding: 16px 0; /*  espacio de cada fila*/
+}
+
+.contact-info-item + .contact-info-item {
+  border-top: 1px solid var(--border-color); /* línea divisora entre elementos */
+}
+
+.contact-info-icon { /* cuadradito de fondo con el icono dentro */
+  width: 40px; /* ancho del icono */
+  height: 40px; /* alto del icono */
+  flex-shrink: 0; /* evita que el icono se reduzca */
+  border-radius: var(--radius-md); /* radio de la esquina */
+  background: var(--color-fondo-alterno); /* fondo del icono */
+  display: flex; /*  centrar el icono dentro del cuadrado */
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.contact-info-label { /* estilo para la etiqueta de información de contacto, texto*/
+  font-weight: 600; /*negrita*/
+  margin-bottom: 4px; /* espacio entre el titulo y lo de abajo  */
+}
+
+.contact-info-value { /* igual, estilo para el valor de información de contacto, texto*/
+  color: var(--color-texto-secundario); /* color del texto */
+}
+/* =========================================================
+    Formularios
+   ========================================================= */
 label {
   display: block;
   font-size: 14px;
