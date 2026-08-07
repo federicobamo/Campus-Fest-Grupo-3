@@ -25,7 +25,10 @@ app.use(bodyParser.json());//Habilita el análisis de JSON en las peticiones
 app.use(cors());
 
 require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]); // Para el error querySrv ECONNREFUSED  https://alexbevi.com/blog/2023/11/13/querysrv-errors-when-connecting-to-mongodb-atlas/
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+    serverSelectionTimeoutMS: 8000, // si no logra hablar con el clúster en 8s, tira error en vez de quedarse en pausa
+    socketTimeoutMS: 20000, // si una consulta ya iniciada no responde en 20s, corta con error
+})
 .then(()=> console.log('MongoDB Atlas conectado'))
 .catch(error => console.log('Ocurrió un error al conectarse con MongoDB: ', error));
 

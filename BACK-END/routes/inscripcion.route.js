@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
             actividadSeleccionada,
             comentarioOpcional
         } = req.body;
-
+console.log("hola"); 
         if ( // validacion 
             !nombreCompleto ||
             !identificacion ||
