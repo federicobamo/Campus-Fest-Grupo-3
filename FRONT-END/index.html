@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFest 2026 — Inicio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B2447'/%3E%3Cpath d='M22 14v36' stroke='%23FFF200' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M25 15h22l-7 8 7 8H25z' fill='%23FFC63E'/%3E%3Ccircle cx='44' cy='44' r='3' fill='%23FFF200'/%3E%3Ccircle cx='52' cy='34' r='2.4' fill='%239CC8FF'/%3E%3Ccircle cx='48' cy='53' r='2' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    :root {
+      --cf-navy: #0B2447;
+      --cf-navy-2: #123A6B;
+      --cf-yellow: #FFF200;
+      --cf-yellow-2: #FFC63E;
+    }
+    .cf-brand { display: inline-flex; align-items: center; gap: 12px; }
+    .cf-brand svg { display: block; }
+    .cf-wordmark {
+      font-family: var(--font-titulo); font-size: 24px; font-weight: 700;
+      letter-spacing: 0.5px; color: var(--color-texto); line-height: 1;
+    }
+    .cf-wordmark .fest { color: var(--cf-yellow-2); }
+    .cf-wordmark small {
+      display: block; font-family: var(--font-cuerpo);
+      font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--color-texto-secundario); margin-top: 3px;
+    }
+    .hero-cf {
+      position: relative; overflow: hidden; color: #fff;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(255,242,0,0.16) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(0,106,234,0.35) 0%, transparent 45%),
+        linear-gradient(135deg, var(--cf-navy) 0%, var(--cf-navy-2) 55%, #164A98 100%);
+      padding: 90px 0 70px;
+    }
+    .hero-cf::before, .hero-cf::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+    .hero-cf::before { width: 420px; height: 420px; right: -140px; top: -140px; border: 2px dashed rgba(255,242,0,0.35); }
+    .hero-cf::after  { width: 260px; height: 260px; left: -100px; bottom: -100px; border: 2px solid rgba(255,255,255,0.12); }
+    .hero-cf .container {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .hero-cf-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,242,0,0.14); border: 1px solid rgba(255,242,0,0.45);
+      color: var(--cf-yellow); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 999px; margin-bottom: 20px;
+    }
+    .hero-cf h1 {
+      color: #fff; font-size: clamp(44px, 6.5vw, 68px); line-height: 1.03;
+      margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .hero-cf h1 .fest { color: var(--cf-yellow); text-shadow: 0 4px 24px rgba(255,242,0,0.35); }
+    .hero-cf-sub {
+      font-family: var(--font-titulo); font-size: 17px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--cf-yellow-2); margin-bottom: 18px;
+    }
+    .hero-cf p.desc-hero { font-size: 17px; color: rgba(255,255,255,0.88); max-width: 540px; margin-bottom: 26px; line-height: 1.7; }
+    .hero-cf-meta { display: flex; gap: 26px; flex-wrap: wrap; margin-bottom: 30px; }
+    .hero-cf-meta .meta-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: rgba(255,242,0,0.14); border: 1px solid rgba(255,242,0,0.35);
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+    .hero-cf-meta .hero-meta-item { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+    .hero-cf-meta strong { display: block; font-size: 15px; }
+    .hero-cf-meta span { color: rgba(255,255,255,0.7); font-size: 13px; }
+    .btn-cf-yellow {
+      background: var(--cf-yellow); color: var(--cf-navy) !important;
+      font-weight: 800; border: none; box-shadow: 0 6px 18px rgba(255,242,0,0.28);
+    }
+    .btn-cf-yellow:hover { background: var(--cf-yellow-2); transform: translateY(-2px); }
+    .btn-cf-ghost { background: transparent; color: #fff !important; border: 2px solid rgba(255,255,255,0.6); font-weight: 700; }
+    .btn-cf-ghost:hover { border-color: var(--cf-yellow); color: var(--cf-yellow) !important; }
+    .hero-cf-visual {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 20px; padding: 30px 28px; backdrop-filter: blur(4px); text-align: center;
+    }
+    .hero-cf-visual .logo-hero { margin: 0 auto 6px; }
+    .hero-cf-visual .logo-hero-word {
+      font-family: var(--font-titulo); font-size: 26px; font-weight: 700;
+      color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+    }
+    .hero-cf-visual .logo-hero-word .fest { color: var(--cf-yellow); }
+    .hero-cf-visual .emoji-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+    .hero-cf-visual .emoji-grid div {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px; font-size: 30px; padding: 16px 0;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .hero-cf-visual .emoji-grid div:hover { transform: translateY(-4px) scale(1.05); background: rgba(255,242,0,0.15); }
+    .hero-cf-visual small { color: rgba(255,255,255,0.65); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .stats-band { background: var(--cf-yellow); padding: 22px 0; }
+    .stats-band .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center; }
+    .stats-band strong { font-family: var(--font-titulo); font-size: 30px; color: var(--cf-navy); display: block; line-height: 1.1; }
+    .stats-band span { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--cf-navy); opacity: .75; }
+    .cat-chips { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .cat-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--color-fondo); border: 2px solid var(--color-primario-3);
+      color: var(--color-primario-1); font-weight: 700; font-size: 14px;
+      padding: 10px 20px; border-radius: 999px; transition: all .15s ease;
+    }
+    .cat-chip:hover { background: var(--color-primario-1); color: #fff; border-color: var(--color-primario-1); transform: translateY(-2px); }
+    .cta-band {
+      background: linear-gradient(120deg, var(--cf-navy) 0%, #164A98 100%);
+      border-radius: 20px; padding: 44px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .cta-band::after {
+      content: ""; position: absolute; width: 300px; height: 300px; right: -80px; top: -120px;
+      border-radius: 50%; border: 2px dashed rgba(255,242,0,0.35);
+    }
+    .cta-band h2 { color: #fff; margin-bottom: 6px; }
+    .cta-band p { color: rgba(255,255,255,0.8); margin: 0; }
+    .footer .cf-wordmark { color: #fff; }
+    .footer .cf-wordmark small { color: rgba(255,255,255,0.6); }
+    @media (max-width: 900px) {
+      .hero-cf .container { grid-template-columns: 1fr; }
+      .hero-cf-visual { max-width: 420px; margin: 0 auto; }
+      .stats-band .container { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
+      .cf-wordmark { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="cf-brand" aria-label="CampusFest — Inicio">
+        <svg width="44" height="44" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="cfBg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0B2447"/>
+              <stop offset="1" stop-color="#164A98"/>
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="14" fill="url(#cfBg)"/>
+          <path d="M22 14v36" stroke="#FFF200" stroke-width="5" stroke-linecap="round"/>
+          <path d="M25 15h22l-7 8 7 8H25z" fill="#FFC63E"/>
+          <circle cx="44" cy="44" r="3" fill="#FFF200"/>
+          <circle cx="52" cy="34" r="2.4" fill="#9CC8FF"/>
+          <circle cx="48" cy="53" r="2" fill="#ffffff"/>
+        </svg>
+        <span class="cf-wordmark">Campus<span class="fest">Fest</span><small>Festival estudiantil</small></span>
+      </a>
+      <nav class="navbar-links" id="navbarLinks">
+        <a href="index.html" class="active">Inicio</a>
+        <a href="actividades.html">Actividades</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="stands.html">Stands</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+      <div class="navbar-actions">
+        <a href="inscripcion.html" class="btn btn-acento btn-sm">Inscribirme</a>
+        <a href="admin-login.html" class="btn btn-secondary btn-sm">Administrador</a>
+        <button class="navbar-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-cf">
+    <div class="container">
+      <div>
+        <span class="hero-cf-eyebrow">⚡ Festival estudiantil · Edición 2026</span>
+        <h1>Campus<span class="fest">Fest</span> 2026</h1>
+        <div class="hero-cf-sub">Cuatro días · Un solo campus · Cero límites</div>
+        <p class="desc-hero">
+          El festival anual de Universidad CENFOTEC que reúne actividades culturales,
+          deportivas, tecnológicas, artísticas, gastronómicas y recreativas para toda
+          la comunidad estudiantil. Ven a aprender, competir y compartir.
+        </p>
+        <div class="hero-cf-meta">
+          <div class="hero-meta-item">
+            <span class="meta-icon">📅</span>
+            <div>
+              <strong>15 – 18 de octubre, 2026</strong>
+              <span>Fecha general del evento</span>
+            </div>
+          </div>
+          <div class="hero-meta-item">
+            <span class="meta-icon">📍</span>
+            <div>
+              <strong>Campus Universidad CENFOTEC</strong>
+              <span>Barrio Francisco Peralta, San José</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="actividades.html" class="btn btn-cf-yellow">Ver actividades</a>
+          <a href="inscripcion.html" class="btn btn-cf-ghost">Inscribirme ahora</a>
+        </div>
+      </div>
+
+      <div class="hero-cf-visual">
+        <svg class="logo-hero" width="88" height="88" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="cfBg2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#123A6B"/>
+              <stop offset="1" stop-color="#006AEA"/>
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="16" fill="url(#cfBg2)" stroke="rgba(255,255,255,0.25)"/>
+          <path d="M22 14v36" stroke="#FFF200" stroke-width="5" stroke-linecap="round"/>
+          <path d="M25 15h22l-7 8 7 8H25z" fill="#FFC63E"/>
+          <circle cx="44" cy="44" r="3" fill="#FFF200"/>
+          <circle cx="52" cy="34" r="2.4" fill="#9CC8FF"/>
+          <circle cx="48" cy="53" r="2" fill="#ffffff"/>
+        </svg>
+        <div class="logo-hero-word">Campus<span class="fest">Fest</span></div>
+        <div class="emoji-grid">
+          <div title="Cultural">🎭</div>
+          <div title="Deportiva">⚽</div>
+          <div title="Tecnológica">💻</div>
+          <div title="Artística">🎨</div>
+          <div title="Gastronómica">🍽️</div>
+          <div title="Recreativa">🎯</div>
+        </div>
+        <small>6 categorías · Un solo festival</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRANJA DE DATOS -->
+  <section class="stats-band">
+    <div class="container">
+      <div><strong>4</strong><span>Días de festival</span></div>
+      <div><strong>20+</strong><span>Actividades</span></div>
+      <div><strong>15+</strong><span>Stands y grupos</span></div>
+      <div><strong>6</strong><span>Categorías</span></div>
+    </div>
+  </section>
+
+  <!-- ACTIVIDADES DESTACADAS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Actividades destacadas</h2>
+        <p>Estas son tres de las actividades principales de esta edición. Explora el catálogo completo para ver todas las opciones.</p>
+      </div>
+
+      <div class="cards-grid" id="contenedorDestacadas">
+        <p class="desc">Cargando actividades destacadas...</p>
+      </div>
+
+      <div style="text-align:center; margin-top: 36px;">
+        <a href="actividades.html" class="btn btn-primary">Ver todas las actividades</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORÍAS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Explora por categoría</h2>
+        <p>Del escenario a la cancha y del laboratorio a la cocina.</p>
+      </div>
+      <div class="cat-chips">
+        <a class="cat-chip" href="actividades.html">🎭 Cultural</a>
+        <a class="cat-chip" href="actividades.html">⚽ Deportiva</a>
+        <a class="cat-chip" href="actividades.html">💻 Tecnológica</a>
+        <a class="cat-chip" href="actividades.html">🎨 Artística</a>
+        <a class="cat-chip" href="actividades.html">🍽️ Gastronómica</a>
+        <a class="cat-chip" href="actividades.html">🎯 Recreativa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESOS RÁPIDOS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>¿Qué puedes hacer en CampusFest?</h2>
+        <p>Todo el festival, organizado en un solo lugar.</p>
+      </div>
+      <div class="cards-grid">
+        <article class="activity-card">
+          <div class="activity-card-body">
+            <span class="activity-card-category">Agenda</span>
+            <h3>Consulta la agenda</h3>
+            <div class="activity-card-meta">
+              <div class="activity-card-meta-item">Todas las actividades ordenadas por fecha y hora, con su lugar y estado.</div>
+            </div>
+            <div class="activity-card-footer">
+              <span class="cupo-badge cupo-disponible">4 días de evento</span>
+              <a href="agenda.html" class="btn btn-secondary btn-sm">Ir a la agenda</a>
+            </div>
+          </div>
+        </article>
+        <article class="activity-card">
+          <div class="activity-card-body">
+            <span class="activity-card-category">Stands</span>
+            <h3>Conoce los stands</h3>
+            <div class="activity-card-meta">
+              <div class="activity-card-meta-item">Grupos, clubes y emprendimientos participantes, con su responsable y ubicación.</div>
+            </div>
+            <div class="activity-card-footer">
+              <span class="cupo-badge cupo-disponible">Zona de exhibición</span>
+              <a href="stands.html" class="btn btn-secondary btn-sm">Ver stands</a>
+            </div>
+          </div>
+        </article>
+        <article class="activity-card">
+          <div class="activity-card-body">
+            <span class="activity-card-category">Inscripción</span>
+            <h3>Inscríbete a una actividad</h3>
+            <div class="activity-card-meta">
+              <div class="activity-card-meta-item">Completa el formulario y recibe la confirmación en pantalla. El cierre es 36 horas antes de cada actividad.</div>
+            </div>
+            <div class="activity-card-footer">
+              <span class="cupo-badge cupo-disponible">Cupos limitados</span>
+              <a href="inscripcion.html" class="btn btn-acento btn-sm">Inscribirme</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h2>¿Listo para vivir CampusFest?</h2>
+          <p>Asegura tu cupo con tu correo institucional antes de que se agote.</p>
+        </div>
+        <a href="inscripcion.html" class="btn btn-cf-yellow" style="position:relative; z-index:1;">Inscribirme ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <span class="cf-brand" style="margin-bottom: 10px;">
+            <svg width="38" height="38" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="64" height="64" rx="14" fill="#0B2447"/>
+              <path d="M22 14v36" stroke="#FFF200" stroke-width="5" stroke-linecap="round"/>
+              <path d="M25 15h22l-7 8 7 8H25z" fill="#FFC63E"/>
+              <circle cx="44" cy="44" r="3" fill="#FFF200"/>
+              <circle cx="52" cy="34" r="2.4" fill="#9CC8FF"/>
+              <circle cx="48" cy="53" r="2" fill="#ffffff"/>
+            </svg>
+            <span class="cf-wordmark">Campus<span class="fest">Fest</span><small>Festival estudiantil</small></span>
+          </span>
+          <p style="font-size: 14px; max-width: 280px;">
+            Festival estudiantil anual de Universidad CENFOTEC.
+            Barrio Francisco Peralta, San José, Costa Rica.
+          </p>
+        </div>
+        <div>
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="actividades.html">Actividades</a></li>
+            <li><a href="agenda.html">Agenda</a></li>
+            <li><a href="stands.html">Stands</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Participantes</h4>
+          <ul>
+            <li><a href="inscripcion.html">Inscripción</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Administración</h4>
+          <ul>
+            <li><a href="admin-login.html">Iniciar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 CampusFest · Universidad CENFOTEC &mdash; Proyecto Integrador 1 (SOFT-11)
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/inicio.js"></script>
+</body>
+</html>

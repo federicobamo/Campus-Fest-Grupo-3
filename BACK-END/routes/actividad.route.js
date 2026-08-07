@@ -83,7 +83,18 @@ router.get("/", async (req, res) => {
         }
 
         if (fecha) {
-            filtro.fechaActividad = new Date(fecha);
+            // Rango del día completo en UTC (mismo criterio que agenda.route.js),
+            // para que el filtro coincida aunque el documento tenga hora guardada
+            const inicioDia = new Date(fecha);
+            if (isNaN(inicioDia.getTime())) {
+                return res.status(400).json({
+                    mensajeError: "La fecha enviada no tiene un formato válido, se espera aaaa-mm-dd"
+                });
+            }
+            inicioDia.setUTCHours(0, 0, 0, 0);
+            const finDia = new Date(fecha);
+            finDia.setUTCHours(23, 59, 59, 999);
+            filtro.fechaActividad = { $gte: inicioDia, $lte: finDia };
         }
 
         const actividades = await Actividad.find(filtro).sort({ fechaActividad: 1 });

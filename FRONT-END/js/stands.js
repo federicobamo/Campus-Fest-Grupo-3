@@ -55,6 +55,21 @@ function renderizarStands(stands) {
     stands.forEach(stand => {
         const icono = ICONOS_STAND[stand.categoriaStand] || "🎪";
 
+        // Actividades vinculadas (RF-STA-05): vienen con populate desde la API
+        let bloqueActividades = "";
+
+        if (stand.actividadesStand && stand.actividadesStand.length > 0) {
+            const nombres = stand.actividadesStand
+                .map(act => `<span class="cupo-badge cupo-disponible">${act.nombreActividad}</span>`)
+                .join(" ");
+
+            bloqueActividades = `
+                <div class="stand-card-actividades">
+                    <strong>Actividades relacionadas:</strong>
+                    <div class="stand-card-badges">${nombres}</div>
+                </div>`;
+        }
+
         const tarjeta = document.createElement("div");
         tarjeta.className = "stand-card";
 
@@ -69,6 +84,7 @@ function renderizarStands(stands) {
                 <span>👤 Responsable: ${stand.responsableStand}</span>
                 <span>📍 Ubicación: ${stand.ubicacionStand}</span>
             </div>
+            ${bloqueActividades}
         `;
 
         grid.appendChild(tarjeta);

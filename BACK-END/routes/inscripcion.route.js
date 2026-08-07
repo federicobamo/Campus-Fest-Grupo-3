@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
     try { // intenta o error
         const {
             nombreCompleto,
-            indentificacion,
+            identificacion,
             correo,
             telefono,
             carrera,
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
 
         if ( // validacion 
             !nombreCompleto ||
-            !indentificacion ||
+            !identificacion ||
             !correo ||
             !telefono ||
             !carrera ||
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
                 mensajeError: "Todo los campos son obligatorios"
             });
         }
-        const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]{2,}$/; // formato de email por defecto 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; // formato de email básico (punto escapado)
 
         if (
             !emailRegex.test(correo)
@@ -39,11 +39,13 @@ router.post("/", async (req, res) => {
                 mensajeError: "El correo no es válido" // retorno de error no valido
             });
         }
-        const correoNormalizado = correo.trim().toLowerCase(); // validar que el correo tenga el formato correcto 
+        const correoNormalizado = correo.trim().toLowerCase(); // normalizar el correo
 
-        if (correoNormalizado.endsWith(DOMINIO_INSTITUCIONAL)) { // correo institucional
-            return res.status(401).json({
-                mensajeError: "Un administrador no puede registrarse en la actividad"
+        // RNF-03: el estudiante DEBE usar su correo institucional para inscribirse
+        // (regla de negocio confirmada con el cliente en la educción de requerimientos)
+        if (!correoNormalizado.endsWith(DOMINIO_INSTITUCIONAL)) {
+            return res.status(400).json({
+                mensajeError: "Debe usar su correo institucional (@ucenfotec.ac.cr) para inscribirse"
             });
         }
         const actividad = await Actividad.findById(actividadSeleccionada); // buscar por id la actividadselecionada por el usuario
@@ -59,14 +61,13 @@ router.post("/", async (req, res) => {
 
         const horasRestantes = (actividad.fechaActividad - ahora) / (1000 * 60 * 60);// para horas
 
-        // Evalúa a true si faltan entre 0 y 36 horas
-        if (horasRestantes > 0 && horasRestantes <= 36) {
-            console.log("Faltan 36 horas o menos para la actividad");
+        // RF-INS-05: se bloquea si faltan 36 horas o menos, incluyendo actividades
+        // que ya iniciaron o ya pasaron (horasRestantes negativas)
+        if (horasRestantes <= 36) {
             return res.status(400).json({
-                mensajeError: "La inscripción está cerrada, faltan 36 horas o menos para la actividad"
+                mensajeError: "La inscripción está cerrada, faltan 36 horas o menos para la actividad (o ya se realizó)"
             });
         }
-        
         //RF04: inscripciones cuando el cupo esté lleno.
         const cuposDisponibles = actividad.cuposDisponiblesActividad ?? actividad.cupoMaximoActividad; // ?? nulo 
 
@@ -76,7 +77,7 @@ router.post("/", async (req, res) => {
             });
         }
         //RF05: El sistema debe impedir que un estudiante se inscriba dos veces 
-        const inscripcionExistente = await Inscripcion.findOne({ indentificacion, actividadSeleccionada }); // busqueda de inscripcion por idetificacion y la actividad selecionada
+        const inscripcionExistente = await Inscripcion.findOne({ identificacion, actividadSeleccionada }); // busqueda de inscripcion por idetificacion y la actividad selecionada
         if (inscripcionExistente) {
             return res.status(400).json({
                 mensajeError: "El estudiante ya está inscrito en esta actividad" // no se permite inscripciones con identificacion duplicada 
@@ -87,7 +88,7 @@ router.post("/", async (req, res) => {
         // nueva inscripcion 
         const nuevaInscripcion = new Inscripcion({ // solicitar los datos requeridos 
             nombreCompleto,
-            indentificacion,
+            identificacion,
             correo: correoNormalizado,
             telefono,
             carrera,
@@ -99,7 +100,7 @@ router.post("/", async (req, res) => {
         await nuevaInscripcion.save(); // guardar la informacion 
 
 
-        // Se descuenta el cupo y, si se lleno, se cambia el estado de la actividad
+        // Se descuenta el cupo y, si se llenó, se cambia el estado de la actividad
         actividad.cuposDisponiblesActividad = cuposDisponibles - 1;
 
         if (actividad.cuposDisponiblesActividad === 0) { // Validacion : cupos disponibles igual a 0 (lleno)
@@ -121,7 +122,7 @@ router.post("/", async (req, res) => {
 });
 
 
-//  consultar Lista de inscripciones 
+//  consultar Listar las inscripciones
 
 router.get("/", async (req, res) => {
     try { 

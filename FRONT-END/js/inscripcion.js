@@ -59,7 +59,7 @@ const enviarFormulario = async (e) => {
 
     const nuevaInscripcion = {
         nombreCompleto: document.querySelector("#nombrecompletoEdit").value,
-        indentificacion: document.querySelector("#identificacionEdit").value,
+        identificacion: document.querySelector("#identificacionEdit").value,
         correo: document.querySelector("#correoelectronicoEdit").value,
         telefono: document.querySelector("#telefonoEdit").value,
         carrera: document.querySelector("#carreraEdit").value,
@@ -69,13 +69,19 @@ const enviarFormulario = async (e) => {
 
     if ( // validando que los campos  esten completos en la nueva inscripcion
         !nuevaInscripcion.nombreCompleto ||
-        !nuevaInscripcion.indentificacion ||
+        !nuevaInscripcion.identificacion ||
         !nuevaInscripcion.correo ||
         !nuevaInscripcion.telefono ||
         !nuevaInscripcion.carrera ||
         !nuevaInscripcion.actividadSeleccionada
     ) {
         showToast("Error", "Por favor, complete todos los campos requeridos.");
+        return;
+    }
+
+    // RNF-03: validación de correo institucional también en el frontend
+    if (!nuevaInscripcion.correo.trim().toLowerCase().endsWith("@ucenfotec.ac.cr")) {
+        showToast("Error", "Debe usar su correo institucional (@ucenfotec.ac.cr) para inscribirse.");
         return;
     }
 

@@ -52,7 +52,7 @@ function aplicarFiltros() {
     const filtradas = inscripciones.filter(insc => { // recorre la lista y la filtra segun la condicion de la fun
         const coincideActividad = !actividadId || insc.actividadSeleccionada?._id === actividadId;
 
-        const identificacion = insc.indentificacion || "";
+        const identificacion = insc.identificacion || "";
         const coincideTexto = !texto ||
             insc.nombreCompleto.toLowerCase().includes(texto) ||
             identificacion.toLowerCase().includes(texto);
@@ -80,7 +80,7 @@ function renderizarTabla(lista) {
 
         fila.innerHTML = ` 
             <td>${insc.nombreCompleto}</td>
-            <td>${insc.indentificacion}</td>
+            <td>${insc.identificacion}</td>
             <td>${insc.correo}</td>
             <td>${insc.telefono}</td>
             <td>${insc.carrera}</td>

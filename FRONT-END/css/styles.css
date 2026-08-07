@@ -1445,3 +1445,27 @@ tbody tr:hover {
     padding: 40px 0;
   }
 }
+/* ==========================================================
+   Actividades vinculadas en la tarjeta de stand (RF-STA-05)
+   ========================================================== */
+.stand-card-actividades {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+  font-size: 13px;
+}
+
+.stand-card-actividades strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-texto-secundario);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stand-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

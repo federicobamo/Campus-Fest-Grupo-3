@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFest 2026 — Resultados y reconocimientos</title>
+  <script src="js/proteger-ruta.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <span class="logo-mark">CF</span>
+        CampusFest <span style="font-size: 13px; font-weight: 400; opacity: 0.7;">/ Admin</span>
+      </a>
+      <div class="navbar-actions">
+        <a href="index.html" class="btn btn-secondary btn-sm">Ver sitio público</a>
+        <a href="#" class="btn btn-secondary btn-sm" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">Cerrar sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-user">
+        <div class="admin-avatar">AD</div>
+        <div>
+          <strong>Admin CampusFest</strong>
+          <span>Administrador</span>
+        </div>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html">&#128202; Dashboard</a>
+        <a href="admin-actividades.html">&#127881; Actividades</a>
+        <a href="admin-inscripciones.html">&#128221; Inscripciones</a>
+        <a href="admin-stands.html">&#127902; Stands</a>
+        <a href="admin-resultados.html" class="active">&#127942; Resultados</a>
+        <a href="#" onclick="sessionStorage.removeItem('adminCorreo'); window.location.href='admin-login.html';">&#128274; Cerrar sesión</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <div>
+          <h1>Resultados y reconocimientos</h1>
+          <p>Registra y actualiza los resultados o reconocimientos de las actividades (RF-ADM-05 · SCRUM-29). Versión visual — la persistencia real corresponde a la Etapa 2.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openModal('modalNuevoResultado')">+ Nuevo resultado</button>
+      </div>
+
+      <div class="form-card" style="overflow-x:auto;">
+        <table style="width:100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align:left; padding: 10px;">Actividad</th>
+              <th style="text-align:left; padding: 10px;">Resultado / reconocimiento</th>
+              <th style="text-align:left; padding: 10px;">Ganador o destacado</th>
+              <th style="text-align:left; padding: 10px;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaResultados">
+            <!-- Se llena con js/resultados-admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL NUEVO RESULTADO -->
+  <div class="modal-overlay" id="modalNuevoResultado">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Registrar resultado</h3>
+        <button class="modal-close" onclick="closeModal('modalNuevoResultado')" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="form-group">
+        <label for="actividadResultado">Actividad</label>
+        <input type="text" id="actividadResultado" required placeholder="Nombre de la actividad">
+      </div>
+      <div class="form-group">
+        <label for="descripcionResultado">Resultado o reconocimiento</label>
+        <input type="text" id="descripcionResultado" required placeholder="Ej.: Primer lugar del torneo">
+      </div>
+      <div class="form-group">
+        <label for="ganadorResultado">Ganador o destacado</label>
+        <input type="text" id="ganadorResultado" required placeholder="Nombre del estudiante o equipo">
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="guardarResultado()">Guardar</button>
+        <button class="btn btn-secondary" onclick="closeModal('modalNuevoResultado')">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <span class="toast-icon">&#10003;</span>
+    <div>
+      <strong>Acción completada</strong>
+      <p>Los cambios se guardaron correctamente.</p>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/resultados-admin.js"></script>
+</body>
+</html>
