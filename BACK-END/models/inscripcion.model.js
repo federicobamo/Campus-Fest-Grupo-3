@@ -10,7 +10,7 @@ const schemaInscripcion = new mongoose.Schema({
     },
 
     // Identificacion 
-    identificacion: {
+    indentificacion: {
 
         type: String,
         required: true // CAMPO OBLIGATORIO
@@ -30,7 +30,7 @@ const schemaInscripcion = new mongoose.Schema({
     carrera: {
 
         type:String,
-        required: true // CAMPO OBLIGATORIO
+        required: true // CAMPO NO OBLIGATORIO
     },
 
     

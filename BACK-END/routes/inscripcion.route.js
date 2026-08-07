@@ -169,11 +169,11 @@ router.delete("/:id", async (req, res) => {
 
 
 
-        return res.status(200).json({
+        return res.status(200).json({ // responde con exito 
             mensaje: "Inscripción eliminada correctamente"
         });
 
-    } catch (error) {
+    } catch (error) { // en caso algo falle con el try
         return res.status(500).json({
             mensajeError: "Error al eliminar la inscripción",
             error: error.message
@@ -182,4 +182,4 @@ router.delete("/:id", async (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = router; // conexion index 
