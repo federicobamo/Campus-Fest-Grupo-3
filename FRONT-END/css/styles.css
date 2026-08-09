@@ -634,6 +634,15 @@ h1, h2, h3, h4 {
 .contact-info-value { /* igual, estilo para el valor de información de contacto, texto*/
   color: var(--color-texto-secundario); /* color del texto */
 }
+
+.faq-item { /* separa cada pregunta de la siguiente */
+  margin-top: 12px;
+}
+
+.faq-question { /* pregunta en negrita, separada de su respuesta */
+  font-weight: 600;
+  margin-bottom: 4px;
+}
 /* =========================================================
     Formularios
    ========================================================= */
